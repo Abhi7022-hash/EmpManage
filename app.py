@@ -3,6 +3,7 @@ from flask_cors import CORS
 import mysql.connector
 from datetime import timedelta
 import secrets
+import json
 import os
 
 app = Flask(__name__)
@@ -13,16 +14,17 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)
 
 CORS(app, supports_credentials=True)
 
-
-ADMIN_USERNAME = "admin"  
-ADMIN_PASSWORD = "admin123"  
+with open("env.json", "r") as file:
+    admin_data = json.load(file)
+ADMIN_USERNAME = admin_data["username"] 
+ADMIN_PASSWORD = admin_data["password"] 
 
 # Database connection function
 def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",   # Write your user here 
-        password="YOUR_PASSWORD_HERE",  # Write your password here
+        password="abhi@123",  # Write your password here
         database="companydb"
     )
 
@@ -256,4 +258,4 @@ def delete_employee(emp_id):
 
 if __name__ == "__main__":
     init_db()  # Initialize database tables
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0",port=5000,debug=True)
