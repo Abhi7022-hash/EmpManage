@@ -22,9 +22,9 @@ ADMIN_PASSWORD = admin_data["password"]
 # Database connection function
 def get_db_connection():
     return mysql.connector.connect(
-        host="localhost",
+        host="10.100.150.162",
         user="root",   # Write your user here 
-        password="abhi@123",  # Write your password here
+        password="abhi123",  # Write your password here
         database="companydb"
     )
 
