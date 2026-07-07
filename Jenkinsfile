@@ -16,6 +16,7 @@ pipeline {
             steps {
                 echo "Building the Apllication files and Docker Image"
                 sh '''
+                cd EmpManage
                 docker build -t task1:v2 .
                 '''
             }
