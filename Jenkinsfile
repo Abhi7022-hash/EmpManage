@@ -7,6 +7,7 @@ pipeline {
             steps {
                 echo 'Cloning the Repository'
                 sh '''
+                rm -rf EmpManage
                 git clone https://github.com/Abhi7022-hash/EmpManage.git
                 
                 '''
