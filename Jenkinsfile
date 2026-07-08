@@ -5,7 +5,10 @@ pipeline {
         stage('Clone repository') {
             steps {
                 echo 'Cloning the Repository'
-                git branch: 'main', url: 'https://github.com/Abhi7022-hash/EmpManage.git'
+                sh '''
+                rm -rf EmpManage
+                git clone https://github.com/Abhi7022-hash/EmpManage.git
+                '''
                 
             }
         }
