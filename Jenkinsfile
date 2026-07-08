@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
  
@@ -6,10 +5,8 @@ pipeline {
         stage('Clone repository') {
             steps {
                 echo 'Cloning the Repository'
-                sh '''
-                rm -rf EmpManage
-                git clone https://github.com/Abhi7022-hash/EmpManage.git
-                '''
+                git branch: 'main', url: 'https://github.com/Abhi7022-hash/EmpManage.git'
+                
             }
         }
         stage("Building Application and Docker Image") {
