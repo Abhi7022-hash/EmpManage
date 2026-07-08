@@ -27,8 +27,8 @@ pipeline {
         stage("Removing old container") {
             steps {
                 sh '''
-                docker stop emsapp 
-                docker rm emsapp 
+                docker stop emsapp || true
+                docker rm emsapp || true
                 '''
             }
         }
