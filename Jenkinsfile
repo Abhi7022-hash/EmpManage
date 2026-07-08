@@ -8,7 +8,7 @@ pipeline {
                 echo 'Cloning the Repository'
                 
                 git branch: 'main',
-                url:  'https://github.com/Abhi7022-hash/EmpManage.git'
+                url: 'https://github.com/Abhi7022-hash/EmpManage.git'
                 
             }
         }
