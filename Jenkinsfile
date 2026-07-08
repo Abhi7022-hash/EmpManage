@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('Clone repository') {
+        stage('Cloning the Repository') {
             steps {
                 echo 'Cloning the Repository'
                 sh '''
@@ -20,11 +20,11 @@ pipeline {
             steps {
                 echo "Building the Application files and Docker Image"
                 sh '''
-                docker build -t ${IMAGE_NAME}:${IMAGE_TAG} EmpManage
+                docker build -t $IMAGE_NAME:$IMAGE_TAG EmpManage
                 '''
             }
         }
-        stage("Remove the container") {
+        stage("Removing old container") {
             steps {
                 sh '''
                 docker stop emsapp || true
@@ -36,7 +36,7 @@ pipeline {
             steps {
                 echo "Deploy and Run the Application"
                 sh '''
-                docker run -d --name emsapp -p 8000:5000 ${IMAGE_NAME}:${IMAGE_TAG}
+                docker run -d --name emsapp -p 8000:5000 $IMAGE_NAME:$IMAGE_TAG
                 '''
             }
         }
