@@ -34,7 +34,7 @@ pipeline {
             steps {
                 echo "Deploy and Run the Application"
                 sh '''
-                docker run -d --name emsapp -p 8000:5000 task1:v2
+                docker run -d --name emsapp -p 8000:5000 task1:$BUILD_NUMBER
                 '''
             }
         }
