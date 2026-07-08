@@ -17,7 +17,7 @@ pipeline {
                 echo "Building the Apllication files and Docker Image"
                 sh '''
                 
-                docker build -t task1:v2 EmpManage
+                docker build -t task1:v3 EmpManage
                 '''
             }
         }
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 echo "Deploy and Run the Application"
                 sh '''
-                docker run -d --name emsapp -p 8000:5000 task1:v2
+                docker run -d --name emsapp -p 8000:5000 task1:v3
                 '''
             }
         }
