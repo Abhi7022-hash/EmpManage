@@ -1,6 +1,11 @@
 pipeline {
     agent any
- 
+
+    environment {
+        IMAGE_NAME = "task1"
+        IMAGE_TAG  = "v${BUILD_NUMBER}"
+    }
+
     stages {
         stage('Clone repository') {
             steps {
@@ -9,23 +14,21 @@ pipeline {
                 rm -rf EmpManage
                 git clone https://github.com/Abhi7022-hash/EmpManage.git
                 '''
-                
             }
         }
         stage("Building Application and Docker Image") {
             steps {
-                echo "Building the Apllication files and Docker Image"
+                echo "Building the Application files and Docker Image"
                 sh '''
-                
-                docker build -t task1:v3 EmpManage
+                docker build -t ${IMAGE_NAME}:${IMAGE_TAG} EmpManage
                 '''
             }
         }
         stage("Remove the container") {
             steps {
                 sh '''
-                docker stop emsapp
-                docker rm emsapp
+                docker stop emsapp || true
+                docker rm emsapp || true
                 '''
             }
         }
@@ -33,7 +36,7 @@ pipeline {
             steps {
                 echo "Deploy and Run the Application"
                 sh '''
-                docker run -d --name emsapp -p 8000:5000 task1:v3
+                docker run -d --name emsapp -p 8000:5000 ${IMAGE_NAME}:${IMAGE_TAG}
                 '''
             }
         }
