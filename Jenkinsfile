@@ -18,7 +18,7 @@ pipeline {
                 echo "Building the Apllication files and Docker Image"
                 sh '''
                 cd EmpManage
-                docker build -t task1:v2 .
+                "docker build -t task1:$BUILD_NUMBER ."
                 '''
             }
         }
