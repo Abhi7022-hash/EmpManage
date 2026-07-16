@@ -20,6 +20,7 @@ pipeline {
             steps {
                 echo "Building the Application files and Docker Image"
                 sh '''
+                cd EmpManage/application
                 docker build -t $IMAGE_NAME:$IMAGE_TAG EmpManage
                 '''
             }
