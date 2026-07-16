@@ -2,11 +2,11 @@ FROM python:3.14.4
 
 WORKDIR /app
 
-COPY application/source-code/requirements.txt .
+COPY source-code/requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY application/source-code/ .
+COPY source-code/ .
 
 EXPOSE 5000
 
