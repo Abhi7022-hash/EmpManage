@@ -1,1 +1,8 @@
+name: Practing Build image and Push image
+on:
+  push:
+    branches:
+      - main
 
+jobs:
+  build
