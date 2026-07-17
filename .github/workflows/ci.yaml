@@ -5,4 +5,21 @@ on:
       - main
 
 jobs:
-  build
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: download the repository code to runner
+        uses: actions/checkout@v4
+        
+      - name: Display the docker version
+        run: docker --version
+
+      - name: Login to DockerHub
+        run: |
+         echo "${{secrets.DOCKERHUB_PASSWORD}}" | docker login -u "${{secrets.DOCKERHUB_USERNAME}}" --password-stdin
+      - name: Build the Docker Image
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/pythonapp:${{ github.run_number }}
+
+      - name: Push the Latest Docker image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/pythonapp:${{ github.run_number }}
+        
